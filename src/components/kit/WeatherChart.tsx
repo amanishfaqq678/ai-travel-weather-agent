@@ -42,12 +42,14 @@ export function WeatherChart({
   subtitle,
   variant,
   data,
+  xKey,
   children,
 }: {
   title: string;
   subtitle?: string;
   variant: "temperature" | "rain" | "wind";
   data: Array<Record<string, string | number>>;
+  xKey: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -72,7 +74,7 @@ export function WeatherChart({
                 </linearGradient>
               </defs>
               <CartesianGrid stroke="var(--border)" vertical={false} />
-              <XAxis dataKey={Object.keys(data[0] ?? { time: "" })[0]} {...axisProps} />
+              <XAxis dataKey={xKey} {...axisProps} />
               <YAxis {...axisProps} />
               <ChartTooltip />
               <Area
@@ -87,7 +89,7 @@ export function WeatherChart({
           ) : variant === "rain" ? (
             <BarChart data={data} margin={{ left: -20, right: 8, top: 8 }}>
               <CartesianGrid stroke="var(--border)" vertical={false} />
-              <XAxis dataKey={Object.keys(data[0] ?? { time: "" })[0]} {...axisProps} />
+              <XAxis dataKey={xKey} {...axisProps} />
               <YAxis {...axisProps} />
               <ChartTooltip />
               <Bar dataKey="rain" fill="var(--cyan)" radius={[6, 6, 0, 0]} name="Rain (%)" />
@@ -95,7 +97,7 @@ export function WeatherChart({
           ) : (
             <LineChart data={data} margin={{ left: -20, right: 8, top: 8 }}>
               <CartesianGrid stroke="var(--border)" vertical={false} />
-              <XAxis dataKey={Object.keys(data[0] ?? { time: "" })[0]} {...axisProps} />
+              <XAxis dataKey={xKey} {...axisProps} />
               <YAxis {...axisProps} />
               <ChartTooltip />
               <Line
