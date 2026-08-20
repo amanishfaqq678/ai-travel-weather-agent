@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiInsightsRouteImport } from './routes/ai-insights'
 import { Route as LiveWeatherRouteImport } from './routes/live-weather'
 import { Route as PlanTripRouteImport } from './routes/plan-trip'
+import { Route as TripsIndexRouteImport } from './routes/trips/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const PlanTripRoute = PlanTripRouteImport.update({
   path: '/plan-trip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TripsIndexRoute = TripsIndexRouteImport.update({
+  id: '/trips/',
+  path: '/trips/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-insights': typeof AiInsightsRoute
   '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
+  '/trips/': typeof TripsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-insights': typeof AiInsightsRoute
   '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
+  '/trips': typeof TripsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,20 @@ export interface FileRoutesById {
   '/ai-insights': typeof AiInsightsRoute
   '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
+  '/trips/': typeof TripsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ai-insights' | '/live-weather' | '/plan-trip'
+  fullPaths: '/' | '/ai-insights' | '/live-weather' | '/plan-trip' | '/trips/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ai-insights' | '/live-weather' | '/plan-trip'
-  id: '__root__' | '/' | '/ai-insights' | '/live-weather' | '/plan-trip'
+  to: '/' | '/ai-insights' | '/live-weather' | '/plan-trip' | '/trips'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-insights'
+    | '/live-weather'
+    | '/plan-trip'
+    | '/trips/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +82,7 @@ export interface RootRouteChildren {
   AiInsightsRoute: typeof AiInsightsRoute
   LiveWeatherRoute: typeof LiveWeatherRoute
   PlanTripRoute: typeof PlanTripRoute
+  TripsIndexRoute: typeof TripsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +115,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlanTripRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trips/': {
+      id: '/trips/'
+      path: '/trips'
+      fullPath: '/trips/'
+      preLoaderRoute: typeof TripsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   AiInsightsRoute: AiInsightsRoute,
   LiveWeatherRoute: LiveWeatherRoute,
   PlanTripRoute: PlanTripRoute,
+  TripsIndexRoute: TripsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
