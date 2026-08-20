@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LiveWeatherRouteImport } from './routes/live-weather'
 import { Route as PlanTripRouteImport } from './routes/plan-trip'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveWeatherRoute = LiveWeatherRouteImport.update({
+  id: '/live-weather',
+  path: '/live-weather',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlanTripRoute = PlanTripRouteImport.update({
@@ -25,27 +31,31 @@ const PlanTripRoute = PlanTripRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/plan-trip'
+  fullPaths: '/' | '/live-weather' | '/plan-trip'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/plan-trip'
-  id: '__root__' | '/' | '/plan-trip'
+  to: '/' | '/live-weather' | '/plan-trip'
+  id: '__root__' | '/' | '/live-weather' | '/plan-trip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LiveWeatherRoute: typeof LiveWeatherRoute
   PlanTripRoute: typeof PlanTripRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-weather': {
+      id: '/live-weather'
+      path: '/live-weather'
+      fullPath: '/live-weather'
+      preLoaderRoute: typeof LiveWeatherRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/plan-trip': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LiveWeatherRoute: LiveWeatherRoute,
   PlanTripRoute: PlanTripRoute,
 }
 export const routeTree = rootRouteImport
