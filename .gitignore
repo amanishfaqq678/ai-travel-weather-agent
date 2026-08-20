@@ -10,11 +10,20 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+build
 .output
 .vinxi
 .tanstack/**
 .nitro
 *.local
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+venv/
+
 
 # Wrangler / Cloudflare
 .wrangler/

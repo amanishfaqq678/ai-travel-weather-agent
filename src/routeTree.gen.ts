@@ -10,19 +10,40 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AiInsightsRouteImport } from './routes/ai-insights'
+import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as CallsRouteImport } from './routes/calls'
 import { Route as LiveWeatherRouteImport } from './routes/live-weather'
 import { Route as PlanTripRouteImport } from './routes/plan-trip'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as VoiceRouteImport } from './routes/voice'
 import { Route as TripsIndexRouteImport } from './routes/trips/index'
+import { Route as TripsTripIdRouteImport } from './routes/trips/$tripId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiInsightsRoute = AiInsightsRouteImport.update({
   id: '/ai-insights',
   path: '/ai-insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CallsRoute = CallsRouteImport.update({
+  id: '/calls',
+  path: '/calls',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LiveWeatherRoute = LiveWeatherRouteImport.update({
@@ -35,53 +56,120 @@ const PlanTripRoute = PlanTripRouteImport.update({
   path: '/plan-trip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoiceRoute = VoiceRouteImport.update({
+  id: '/voice',
+  path: '/voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TripsIndexRoute = TripsIndexRouteImport.update({
   id: '/trips/',
   path: '/trips/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TripsTripIdRoute = TripsTripIdRouteImport.update({
+  id: '/trips/$tripId',
+  path: '/trips/$tripId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-insights': typeof AiInsightsRoute
+  '/alerts': typeof AlertsRoute
+  '/calls': typeof CallsRoute
   '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
+  '/settings': typeof SettingsRoute
+  '/voice': typeof VoiceRoute
+  '/trips/$tripId': typeof TripsTripIdRoute
   '/trips/': typeof TripsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-insights': typeof AiInsightsRoute
+  '/alerts': typeof AlertsRoute
+  '/calls': typeof CallsRoute
   '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
+  '/settings': typeof SettingsRoute
+  '/voice': typeof VoiceRoute
+  '/trips/$tripId': typeof TripsTripIdRoute
   '/trips': typeof TripsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-insights': typeof AiInsightsRoute
+  '/alerts': typeof AlertsRoute
+  '/calls': typeof CallsRoute
   '/live-weather': typeof LiveWeatherRoute
   '/plan-trip': typeof PlanTripRoute
+  '/settings': typeof SettingsRoute
+  '/voice': typeof VoiceRoute
+  '/trips/$tripId': typeof TripsTripIdRoute
   '/trips/': typeof TripsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ai-insights' | '/live-weather' | '/plan-trip' | '/trips/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/ai-insights'
+    | '/alerts'
+    | '/calls'
+    | '/live-weather'
+    | '/plan-trip'
+    | '/settings'
+    | '/voice'
+    | '/trips/$tripId'
+    | '/trips/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ai-insights' | '/live-weather' | '/plan-trip' | '/trips'
+  to:
+    | '/'
+    | '/about'
+    | '/ai-insights'
+    | '/alerts'
+    | '/calls'
+    | '/live-weather'
+    | '/plan-trip'
+    | '/settings'
+    | '/voice'
+    | '/trips/$tripId'
+    | '/trips'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/ai-insights'
+    | '/alerts'
+    | '/calls'
     | '/live-weather'
     | '/plan-trip'
+    | '/settings'
+    | '/voice'
+    | '/trips/$tripId'
     | '/trips/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AiInsightsRoute: typeof AiInsightsRoute
+  AlertsRoute: typeof AlertsRoute
+  CallsRoute: typeof CallsRoute
   LiveWeatherRoute: typeof LiveWeatherRoute
   PlanTripRoute: typeof PlanTripRoute
+  SettingsRoute: typeof SettingsRoute
+  VoiceRoute: typeof VoiceRoute
+  TripsTripIdRoute: typeof TripsTripIdRoute
   TripsIndexRoute: typeof TripsIndexRoute
 }
 
@@ -94,11 +182,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-insights': {
       id: '/ai-insights'
       path: '/ai-insights'
       fullPath: '/ai-insights'
       preLoaderRoute: typeof AiInsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calls': {
+      id: '/calls'
+      path: '/calls'
+      fullPath: '/calls'
+      preLoaderRoute: typeof CallsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/live-weather': {
@@ -115,6 +224,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlanTripRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voice': {
+      id: '/voice'
+      path: '/voice'
+      fullPath: '/voice'
+      preLoaderRoute: typeof VoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/trips/': {
       id: '/trips/'
       path: '/trips'
@@ -122,14 +245,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trips/$tripId': {
+      id: '/trips/$tripId'
+      path: '/trips/$tripId'
+      fullPath: '/trips/$tripId'
+      preLoaderRoute: typeof TripsTripIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AiInsightsRoute: AiInsightsRoute,
+  AlertsRoute: AlertsRoute,
+  CallsRoute: CallsRoute,
   LiveWeatherRoute: LiveWeatherRoute,
   PlanTripRoute: PlanTripRoute,
+  SettingsRoute: SettingsRoute,
+  VoiceRoute: VoiceRoute,
+  TripsTripIdRoute: TripsTripIdRoute,
   TripsIndexRoute: TripsIndexRoute,
 }
 export const routeTree = rootRouteImport
