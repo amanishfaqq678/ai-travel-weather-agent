@@ -24,7 +24,7 @@ export const Route = createFileRoute("/live-weather")({
       },
     ],
   }),
-  component: LiveWeather;
+  component: LiveWeather,
 });
 
 function LiveWeather() {
